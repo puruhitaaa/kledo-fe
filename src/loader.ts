@@ -1,11 +1,16 @@
-export async function loader({ request }) {
+import type { LoaderFunctionArgs } from "react-router"
+import type { LoaderData, RegionsData } from "./types"
+
+export async function loader({
+  request,
+}: LoaderFunctionArgs): Promise<LoaderData> {
   const url = new URL(request.url)
   const provinceId = url.searchParams.get("province")
   const regencyId = url.searchParams.get("regency")
   const districtId = url.searchParams.get("district")
 
   const res = await fetch("/data/indonesia_regions.json")
-  const data = await res.json()
+  const data: RegionsData = await res.json()
 
   return {
     provinces: data.provinces,

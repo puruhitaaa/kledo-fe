@@ -1,7 +1,9 @@
 import { useLoaderData, useNavigate, useSearchParams } from "react-router"
+import type { BreadcrumbItem, LoaderData } from "./types"
 
 export default function App() {
-  const { provinces, regencies, districts, filters } = useLoaderData()
+  const { provinces, regencies, districts, filters } =
+    useLoaderData() as LoaderData
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
@@ -17,14 +19,14 @@ export default function App() {
     ? districts.filter((d) => d.regency_id === filters.regency)
     : []
 
-  function handleProvinceChange(e) {
+  function handleProvinceChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value
     const params = new URLSearchParams()
     if (value) params.set("province", value)
     navigate(`/?${params.toString()}`)
   }
 
-  function handleRegencyChange(e) {
+  function handleRegencyChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value
     const params = new URLSearchParams(searchParams)
     params.delete("regency")
@@ -33,7 +35,7 @@ export default function App() {
     navigate(`/?${params.toString()}`)
   }
 
-  function handleDistrictChange(e) {
+  function handleDistrictChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value
     const params = new URLSearchParams(searchParams)
     params.delete("district")
@@ -45,7 +47,9 @@ export default function App() {
     navigate("/")
   }
 
-  const breadcrumbItems = [{ label: "Indonesia", active: false }]
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: "Indonesia", active: false },
+  ]
   if (selectedProvince) {
     breadcrumbItems.push({
       label: selectedProvince.name,
