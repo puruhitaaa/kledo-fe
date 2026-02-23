@@ -287,7 +287,7 @@ export default function App() {
         <nav className='border-b border-gray-100 px-6 md:px-10 py-5 text-sm font-semibold'>
           <ol className='flex items-center gap-2.5 flex-wrap'>
             {breadcrumbItems.map((item, index) => (
-              <li key={index} className='flex items-center gap-2.5'>
+              <li key={index} className='flex items-center gap-2.5 breadcrumb'>
                 {index > 0 && (
                   <svg
                     className='w-3 h-3 text-gray-300'
