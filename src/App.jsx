@@ -45,7 +45,6 @@ export default function App() {
     navigate("/")
   }
 
-  // Breadcrumb segments
   const breadcrumbItems = [{ label: "Indonesia", active: false }]
   if (selectedProvince) {
     breadcrumbItems.push({
@@ -62,7 +61,7 @@ export default function App() {
   if (selectedDistrict) {
     breadcrumbItems.push({ label: selectedDistrict.name, active: true })
   }
-  // Mark last item as active
+
   if (breadcrumbItems.length > 0) {
     breadcrumbItems.forEach((item, i) => {
       item.active = i === breadcrumbItems.length - 1
@@ -70,55 +69,51 @@ export default function App() {
   }
 
   return (
-    <div className='flex min-h-screen bg-gray-50'>
-      {/* Sidebar */}
-      <aside className='w-72 border-r border-gray-200 bg-white p-6 flex flex-col'>
-        {/* Logo */}
+    <div className='flex flex-col md:flex-row min-h-screen bg-white font-sans text-gray-900'>
+      <aside className='w-full md:w-[320px] border-b md:border-b-0 md:border-r border-gray-200 bg-white p-6 md:p-8 flex flex-col shrink-0'>
         <div className='flex items-center gap-3 mb-10'>
-          <div className='w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center'>
+          <div className='w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center shrink-0'>
             <svg
-              className='w-5 h-5 text-white'
+              className='w-6 h-6 text-blue-600'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
+              strokeWidth={1.5}
             >
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
-                strokeWidth={2}
-                d='M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                d='M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418'
               />
             </svg>
           </div>
-          <span className='text-lg font-semibold text-gray-900'>
+          <span className='text-xl font-bold text-gray-900 tracking-tight'>
             Frontend Assessment
           </span>
         </div>
 
-        {/* Filter Section */}
         <div className='flex-1'>
-          <p className='text-xs font-semibold text-gray-400 tracking-wider uppercase mb-6'>
+          <p className='text-[11px] font-bold text-gray-400 tracking-widest uppercase mb-6'>
             Filter Wilayah
           </p>
 
-          {/* Province */}
-          <div className='mb-5'>
-            <label className='block text-xs font-semibold text-gray-500 tracking-wider uppercase mb-2'>
+          <div className='mb-6'>
+            <label className='block text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-2.5'>
               Provinsi
             </label>
             <div className='relative'>
-              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'>
+              <span className='absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400'>
                 <svg
-                  className='w-4 h-4'
+                  className='w-5 h-5'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={1.5}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+                    d='M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z'
                   />
                 </svg>
               </span>
@@ -126,7 +121,7 @@ export default function App() {
                 name='province'
                 value={filters.province ?? ""}
                 onChange={handleProvinceChange}
-                className='w-full appearance-none rounded-lg border border-gray-300 bg-white py-2.5 pl-9 pr-10 text-sm text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer'
+                className='w-full appearance-none rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-10 text-sm font-medium text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer'
               >
                 <option value=''>Pilih Provinsi</option>
                 {provinces.map((p) => (
@@ -135,48 +130,41 @@ export default function App() {
                   </option>
                 ))}
               </select>
-              <span className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
+              <span className='absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
                 <svg
                   className='w-4 h-4'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={2}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M19 9l-7 7-7-7'
+                    d='M19.5 8.25l-7.5 7.5-7.5-7.5'
                   />
                 </svg>
               </span>
             </div>
           </div>
 
-          {/* Regency */}
-          <div className='mb-5'>
-            <label className='block text-xs font-semibold text-gray-500 tracking-wider uppercase mb-2'>
+          <div className='mb-6'>
+            <label className='block text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-2.5'>
               Kota/Kabupaten
             </label>
             <div className='relative'>
-              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'>
+              <span className='absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400'>
                 <svg
-                  className='w-4 h-4'
+                  className='w-5 h-5'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={1.5}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                  />
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
+                    d='M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z'
                   />
                 </svg>
               </span>
@@ -185,7 +173,7 @@ export default function App() {
                 value={filters.regency ?? ""}
                 onChange={handleRegencyChange}
                 disabled={!filters.province}
-                className='w-full appearance-none rounded-lg border border-gray-300 bg-white py-2.5 pl-9 pr-10 text-sm text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed'
+                className='w-full appearance-none rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-10 text-sm font-medium text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed'
               >
                 <option value=''>Pilih Kota/Kabupaten</option>
                 {filteredRegencies.map((r) => (
@@ -194,48 +182,46 @@ export default function App() {
                   </option>
                 ))}
               </select>
-              <span className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
+              <span className='absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
                 <svg
                   className='w-4 h-4'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={2}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M19 9l-7 7-7-7'
+                    d='M19.5 8.25l-7.5 7.5-7.5-7.5'
                   />
                 </svg>
               </span>
             </div>
           </div>
 
-          {/* District */}
-          <div className='mb-5'>
-            <label className='block text-xs font-semibold text-gray-500 tracking-wider uppercase mb-2'>
+          <div className='mb-8'>
+            <label className='block text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-2.5'>
               Kecamatan
             </label>
             <div className='relative'>
-              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'>
+              <span className='absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400'>
                 <svg
-                  className='w-4 h-4'
+                  className='w-5 h-5'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={1.5}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                    d='M15 10.5a3 3 0 11-6 0 3 3 0 016 0z'
                   />
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
+                    d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z'
                   />
                 </svg>
               </span>
@@ -244,7 +230,7 @@ export default function App() {
                 value={filters.district ?? ""}
                 onChange={handleDistrictChange}
                 disabled={!filters.regency}
-                className='w-full appearance-none rounded-lg border border-gray-300 bg-white py-2.5 pl-9 pr-10 text-sm text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed'
+                className='w-full appearance-none rounded-xl border border-gray-300 bg-white py-3 pl-11 pr-10 text-sm font-medium text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-colors cursor-pointer disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed'
               >
                 <option value=''>Pilih Kecamatan</option>
                 {filteredDistricts.map((d) => (
@@ -253,62 +239,68 @@ export default function App() {
                   </option>
                 ))}
               </select>
-              <span className='absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
+              <span className='absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none'>
                 <svg
                   className='w-4 h-4'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
+                  strokeWidth={2}
                 >
                   <path
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M19 9l-7 7-7-7'
+                    d='M19.5 8.25l-7.5 7.5-7.5-7.5'
                   />
                 </svg>
               </span>
             </div>
           </div>
-        </div>
 
-        {/* Divider */}
-        <div className='border-t border-gray-200 my-4' />
-
-        {/* Reset Button */}
-        <button
-          onClick={handleReset}
-          className='w-full flex items-center justify-center gap-2 rounded-lg border-2 border-blue-600 py-2.5 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer'
-        >
-          <svg
-            className='w-4 h-4'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
+          <button
+            onClick={handleReset}
+            className='w-full flex items-center justify-center gap-2 rounded-xl border border-blue-600 py-3 text-sm font-bold tracking-widest text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer'
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
+            <svg
+              className='w-4 h-4'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
               strokeWidth={2}
-              d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z'
-            />
-          </svg>
-          RESET
-        </button>
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M3 3l18 18M4.318 4.318A21.88 21.88 0 003 4.774v1.044a2.25 2.25 0 00.659 1.591l5.432 5.432a2.25 2.25 0 01.659 1.591v2.927a2.25 2.25 0 001.244 2.013L14.25 21v-6.568a2.25 2.25 0 01.659-1.591l2.62-2.62m2.813-2.813L21 6.409A2.25 2.25 0 0021 4.818V3.774c0-.54-.384-1.006-.917-1.096A48.32 48.32 0 0012 3c-1.05 0-2.089.034-3.118.1'
+              />
+            </svg>
+            RESET
+          </button>
+        </div>
       </aside>
 
-      {/* Main Area */}
-      <div className='flex-1 flex flex-col'>
-        {/* Breadcrumb */}
-        <nav className='breadcrumb px-8 py-4 text-sm'>
-          <ol className='flex items-center gap-2'>
+      <div className='flex-1 flex flex-col min-w-0'>
+        <nav className='border-b border-gray-100 px-6 md:px-10 py-5 text-sm font-semibold'>
+          <ol className='flex items-center gap-2.5 flex-wrap'>
             {breadcrumbItems.map((item, index) => (
-              <li key={index} className='flex items-center gap-2'>
-                {index > 0 && <span className='text-gray-400'>›</span>}
+              <li key={index} className='flex items-center gap-2.5'>
+                {index > 0 && (
+                  <svg
+                    className='w-3 h-3 text-gray-300'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                    strokeWidth={3}
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M8.25 4.5l7.5 7.5-7.5 7.5'
+                    />
+                  </svg>
+                )}
                 <span
-                  className={
-                    item.active ? "text-blue-600 font-medium" : "text-gray-500"
-                  }
+                  className={item.active ? "text-blue-500" : "text-gray-400"}
                 >
                   {item.label}
                 </span>
@@ -317,85 +309,84 @@ export default function App() {
           </ol>
         </nav>
 
-        {/* Main Content */}
-        <main className='flex-1 flex items-center justify-center p-8'>
-          <div className='text-center space-y-8'>
+        <main className='flex-1 flex items-center justify-center p-6 md:p-10 overflow-y-auto'>
+          <div className='text-center w-full max-w-3xl mx-auto'>
             {!selectedProvince && !selectedRegency && !selectedDistrict && (
-              <div className='text-gray-400 text-lg'>
-                <p className='text-5xl font-bold text-gray-800 mb-2'>
+              <div className='text-gray-400'>
+                <p className='text-4xl md:text-6xl font-extrabold text-gray-800 mb-4 tracking-tight'>
                   Indonesia
                 </p>
-                <p className='text-sm text-gray-400 mt-4'>
+                <p className='text-base text-gray-400'>
                   Pilih provinsi untuk memulai
                 </p>
               </div>
             )}
 
             {selectedProvince && (
-              <div>
-                <p className='text-xs font-semibold text-blue-500 tracking-widest uppercase mb-2'>
+              <div className='animate-in fade-in slide-in-from-bottom-4 duration-500'>
+                <p className='text-[11px] font-bold text-blue-400 tracking-[0.2em] uppercase mb-3'>
                   Provinsi
                 </p>
-                <p className='text-5xl font-extrabold text-gray-900'>
+                <p className='text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight'>
                   {selectedProvince.name}
                 </p>
               </div>
             )}
 
             {selectedProvince && selectedRegency && (
-              <>
-                <div className='flex justify-center'>
+              <div className='animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100 fill-mode-both'>
+                <div className='flex justify-center my-8 md:my-12'>
                   <svg
-                    className='w-6 h-6 text-gray-300'
+                    className='w-5 h-5 text-blue-200'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
+                    strokeWidth={2}
                   >
                     <path
                       strokeLinecap='round'
                       strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M19 14l-7 7m0 0l-7-7m7 7V3'
+                      d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3'
                     />
                   </svg>
                 </div>
                 <div>
-                  <p className='text-xs font-semibold text-blue-500 tracking-widest uppercase mb-2'>
+                  <p className='text-[11px] font-bold text-blue-400 tracking-[0.2em] uppercase mb-3'>
                     Kota / Kabupaten
                   </p>
-                  <p className='text-5xl font-extrabold text-gray-900'>
+                  <p className='text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight'>
                     {selectedRegency.name}
                   </p>
                 </div>
-              </>
+              </div>
             )}
 
             {selectedRegency && selectedDistrict && (
-              <>
-                <div className='flex justify-center'>
+              <div className='animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 fill-mode-both'>
+                <div className='flex justify-center my-8 md:my-12'>
                   <svg
-                    className='w-6 h-6 text-gray-300'
+                    className='w-5 h-5 text-blue-200'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
+                    strokeWidth={2}
                   >
                     <path
                       strokeLinecap='round'
                       strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M19 14l-7 7m0 0l-7-7m7 7V3'
+                      d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3'
                     />
                   </svg>
                 </div>
                 <div>
-                  <p className='text-xs font-semibold text-blue-500 tracking-widest uppercase mb-2'>
+                  <p className='text-[11px] font-bold text-blue-400 tracking-[0.2em] uppercase mb-3'>
                     Kecamatan
                   </p>
-                  <p className='text-5xl font-extrabold text-gray-900'>
+                  <p className='text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight'>
                     {selectedDistrict.name}
                   </p>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </main>
